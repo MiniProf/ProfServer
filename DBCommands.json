@@ -1,7 +1,7 @@
 [
   {
     "name":"getPollData",
-    "params":["%POLLID%"],
-    "SQL":"SELECT poll_data FROM MP_Poll WHERE %POLLID% = poll_id;"
+    "params":["POLLID"],
+    "SQL":"SELECT poll_data FROM MP_Poll WHERE POLLID = poll_id;"
   }
 ]
