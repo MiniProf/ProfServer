@@ -1,5 +1,6 @@
 <?php
-
+//this does a mysqli connection and puts it in $DBConnection
+include_once 'DBConnection.php';
 /**
  *
  */
@@ -14,9 +15,11 @@ class DBInterface
   }
   function runDBCOMMAND($COMMAND, $ArrayOfParams = Array()){
     //format of ArrayOfParams unkknown
-    var_dump($this->COMMANDS);
+    //var_dump($this->COMMANDS);
     if($Command = $this->getCommand($COMMAND,$ArrayOfParams)){
-      var_dump($Command);
+      //var_dump($Command);
+      $res = $DBConnection->query($Command);
+      return $res;
     }
     else{
       die("Unknown DB COMMAND");
@@ -30,7 +33,7 @@ class DBInterface
           if(strpos($ArrayOfParams[$param],";")!== false){
             return false;
           }
-          $sql = str_replace($param,$ArrayOfParams[$param],$sql);
+          $sql = str_replace("%" . $param . "%",$ArrayOfParams[$param],$sql);
         }
         return $sql;
       }
@@ -39,6 +42,4 @@ class DBInterface
   }
 }
 $DB = new DBInterface();
-$DB->runDBCOMMAND("getPollData",Array("POLLID"=>"23895"));
-
  ?>
