@@ -1,0 +1,57 @@
+[
+  {
+    "name":"addToPoll",
+    "params":["POLLID","VOTE"],
+    "SQL":"UPDATE MP_Questions SET %VOTE%count = %VOTE%count + 1  WHERE ID = '%POLLID%';"
+  },
+  {
+    "name":"getPollData",
+    "params":["POLLID"],
+    "SQL":"SELECT `ID`, `Acount`, `Bcount`, `Ccount`, `Dcount` FROM MP_Questions WHERE ID = \"%POLLID%\";"
+  },
+  {
+    "name":"LECIDFromToken",
+    "params":["Token"],
+    "SQL":"SELECT `LecturerID` FROM `MP_Tokens` WHERE TOKEN='%TOKEN%';"
+  },
+  {
+    "name":"createLecUser",
+    "params":["NAME","UNI","PASSHASH"],
+    "SQL":"INSERT INTO MP_Lecturers (`Name`,`Uni`,`PassHash`) VALUES ('%NAME%', '%UNI%', '%PASSHASH%');"
+  },
+  {
+    "name":"tokenExist",
+    "params":["POSSIBLETOKEN"],
+    "SQL":"SELECT * FROM MP_Tokens WHERE Token = '%POSSIBLETOKEN%';"
+  },
+  {
+    "name":"userLegit",
+    "params":["NAME","PASSHASH"],
+    "SQL":"SELECT * FROM MP_Lecturers WHERE Name = '%NAME%' AND PassHash = '%PASSHASH%';"
+  },
+  {
+    "name":"createToken",
+    "params":["LECID","TOKEN"],
+    "SQL":"INSERT INTO MP_Tokens (`LecturerID`,`Token`) VALUES ('%LECID%', '%TOKEN%');"
+  },
+  {
+    "name":"createSession",
+    "params":["NAME","LECID","LENGTH","STARTTIME"],
+    "SQL":"INSERT INTO MP_Sessions (`Name`,`LecturerID`,`Length`,`StartTime`) VALUES ('%NAME%', '%LECID%', '%LENGTH%', '%STARTTIME%');"
+  },
+  {
+    "name":"submitReview",
+    "params":["SESSIONID","REVIEW"],
+    "SQL":"INSERT INTO MP_Reviews (`SessionID`,`Quote`) VALUES ('%SESSIONID%','%REVIEW%');"
+  },
+  {
+    "name":"getReviews",
+    "params":["SESSIONID"],
+    "SQL":"SELECT * FROM MP_Reviews WHERE SessionID = '%SESSIONID%';"
+  },
+  {
+    "name":"getUser",
+    "params":["TOKEN"],
+    "SQL":"SELECT * FROM MP_Tokens WHERE token = '%TOKEN%';"
+  }
+]

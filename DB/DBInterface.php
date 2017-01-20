@@ -1,31 +1,29 @@
 <?php
 //this does a mysqli connection and puts it in $DBConnection
-include_once 'DBConnection.php';
+include ('DBConnection.php');
 /**
  *
  */
 class DBInterface
 {
   public $COMMANDS = array();
+  private $DBConnection;
   function __construct(){
-    $this->COMMANDS = json_decode(file_get_contents("./DBCommands.json"),true);
+    $this->COMMANDS = json_decode(file_get_contents(dirname(__FILE__) . "/DBCommands.json"),true);
+    $this->DBConnection = $GLOBALS['DBConnection'];
   }
-  function getDBCommands(){
+  public function getDBCommands(){
     return $this->COMMANDS;
   }
-  function runDBCOMMAND($COMMAND, $ArrayOfParams = Array()){
+  public function runDBCOMMAND($COMMAND, $ArrayOfParams = Array()){
     //format of ArrayOfParams unkknown
     //var_dump($this->COMMANDS);
-    if($Command = $this->getCommand($COMMAND,$ArrayOfParams)){
-      //var_dump($Command);
-      $res = $DBConnection->query($Command);
-      return $res;
+    if($Command = $this->getCommand($COMMAND,$ArrayOfParams))
+      return$this->DBConnection->query($Command);
+
+    die("Unknown DB COMMAND");
     }
-    else{
-      die("Unknown DB COMMAND");
-    }
-  }
-  function getCommand($COMMAND,$ArrayOfParams){
+  public function getCommand($COMMAND,$ArrayOfParams){
     foreach ($this->COMMANDS as $value) {
       if($value["name"] == $COMMAND){
         $sql = $value["SQL"];
@@ -35,11 +33,11 @@ class DBInterface
           }
           $sql = str_replace("%" . $param . "%",$ArrayOfParams[$param],$sql);
         }
+        //$GLOBALS['dieSafely'](true,$sql);
         return $sql;
       }
     }
     return false;
   }
 }
-$DB = new DBInterface();
  ?>
