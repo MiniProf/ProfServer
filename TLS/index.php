@@ -2,17 +2,17 @@
 //echo $_SERVER['REQUEST_METHOD'];
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   /*
-   * Submit a Review
-   * Requires SESSIONID, REVIEW
+   * add To TLS
+   * Requires SESSIONID MINUTE
    */
-   include_once 'SubmitReview.php';
+   include_once 'addToTLS.php';
 }
 elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
   /*
-   * Get Lecturer Reviews for a SESSION (Requires a Lecturer Token)
+   * Get TLS for sessionID
    * Requires TOKEN SESSIONID
    */
-   include_once 'GetReviews.php';
+   include_once 'getTLS.php';
 }
 
 ?>

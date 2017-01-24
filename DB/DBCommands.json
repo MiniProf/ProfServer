@@ -50,6 +50,31 @@
     "SQL":"SELECT * FROM MP_Reviews WHERE SessionID = '%SESSIONID%';"
   },
   {
+    "name":"createTLS",
+    "params":["SESSIONID","MINUTE","OPINION"],
+    "SQL":"INSERT INTO MP_TLS (`SessionID`,`Minute`,`no%OPINION%`) VALUES ('%SESSIONID%','%MINUTE%','1');"
+  },
+  {
+    "name":"submitTLS",
+    "params":["SESSIONID","MINUTE","OPINION"],
+    "SQL":"UPDATE MP_TLS SET no%OPINION%=no%OPINION%+1 WHERE SessionID = '%SESSIONID%' AND Minute='%MINUTE%';"
+  },
+  {
+    "name":"getTLS",
+    "params":["SESSIONID"],
+    "SQL":"SELECT * FROM MP_TLS WHERE SessionID = '%SESSIONID%' ORDER BY Minute;"
+  },
+  {
+    "name":"getPreciseTLS",
+    "params":["SESSIONID","MINUTE"],
+    "SQL":"SELECT * FROM MP_TLS WHERE SessionID = '%SESSIONID%' AND Minute = '%MINUTE%' LIMIT 1;"
+  },
+  {
+    "name":"getSession",
+    "params":["SESSIONID"],
+    "SQL":"SELECT * FROM MP_Sessions WHERE ID = '%SESSIONID%' LIMIT 1;"
+  },
+  {
     "name":"getUser",
     "params":["TOKEN"],
     "SQL":"SELECT * FROM MP_Tokens WHERE token = '%TOKEN%';"
