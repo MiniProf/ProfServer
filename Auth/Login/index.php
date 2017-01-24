@@ -27,7 +27,7 @@ class Login extends API
     $res = $this->DB->runDBCOMMAND("userLegit",array('NAME' => $_POST['NAME'],'PASSHASH'=>$PASSHASH));
     //var_dump(mysqli_num_rows($res));
     if(mysqli_num_rows($res)!=1){
-      $GLOBALS['dieSafely'](true,"User Not Legit$PASSHASH");
+      $GLOBALS['dieSafely'](true,"User Not Recognized");
     }
     $row = mysqli_fetch_assoc($res);
     $ID = $row['ID'];
