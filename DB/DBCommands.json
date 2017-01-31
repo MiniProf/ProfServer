@@ -11,7 +11,7 @@
   },
   {
     "name":"LECIDFromToken",
-    "params":["Token"],
+    "params":["TOKEN"],
     "SQL":"SELECT `LecturerID` FROM `MP_Tokens` WHERE TOKEN='%TOKEN%';"
   },
   {
@@ -36,8 +36,8 @@
   },
   {
     "name":"createSession",
-    "params":["NAME","LECID","LENGTH","STARTTIME"],
-    "SQL":"INSERT INTO MP_Sessions (`Name`,`LecturerID`,`Length`,`StartTime`) VALUES ('%NAME%', '%LECID%', '%LENGTH%', '%STARTTIME%');"
+    "params":["NAME","LECID","STARTTIME"],
+    "SQL":"INSERT INTO MP_Sessions (`Name`,`LecturerID`,`StartTime`) VALUES ('%NAME%', '%LECID%', '%STARTTIME%');"
   },
   {
     "name":"submitReview",
@@ -75,8 +75,8 @@
     "SQL":"SELECT * FROM MP_Sessions WHERE ID = '%SESSIONID%' LIMIT 1;"
   },
   {
-    "name":"getUser",
+    "name":"getUserName",
     "params":["TOKEN"],
-    "SQL":"SELECT * FROM MP_Tokens WHERE token = '%TOKEN%';"
+    "SQL":"SELECT MP_Lecturers.ID, MP_Lecturers.Name FROM MP_Tokens JOIN MP_Lecturers ON MP_Tokens.LecturerID = MP_Lecturers.ID WHERE token = '%TOKEN%';"
   }
 ]

@@ -12,6 +12,7 @@ $GLOBALS['dieSafely'] = function($err,$message){
 abstract class API
 {
   protected $USER = "ANON";
+  protected $USERID = "";
   protected $DB;
   protected $TOKEN = "";
   protected $GETVarsReq = array();
@@ -21,12 +22,15 @@ abstract class API
     if(!$allowAnon && $_GET['token']){
       dieSafely(true,"No Token");
     }
+    $this->preCheck();
     $this->TOKEN = $_GET['TOKEN'];
+    $var = mysqli_fetch_assoc($this->DB->runDBCOMMAND("getUserName",array("TOKEN"=>$this->TOKEN)));
+    $this->USER = $var["Name"];
+    $this->USERID = $var["ID"];
     $this->preInit();
-    $this->run();
     $GLOBALS['dieSafely'](false,$this->doAPI());
   }
-  private function run()
+  private function preCheck()
   {
     $this->DB = new DBInterface();
     foreach ($this->GETVarsReq as $value) {
