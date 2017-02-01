@@ -1,13 +1,13 @@
 <?php
 //echo $_SERVER['REQUEST_METHOD'];
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] !== 'GET') {
   /*
    * add To TLS
    * Requires SESSIONID MINUTE
    */
    include_once 'addToTLS.php';
 }
-elseif ($_SERVER['REQUEST_METHOD'] === 'GET') {
+else {
   /*
    * Get TLS for sessionID
    * Requires TOKEN SESSIONID
