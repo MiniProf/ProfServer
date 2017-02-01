@@ -75,6 +75,11 @@
     "SQL":"SELECT * FROM MP_Sessions WHERE ID = '%SESSIONID%' LIMIT 1;"
   },
   {
+    "name":"incrParticipants",
+    "params":["SESSIONID"],
+    "SQL":"UPDATE MP_Sessions SET ParticipantCount = ParticipantCount + 1 WHERE ID = '%SESSIONID%';"
+  },
+  {
     "name":"getUserName",
     "params":["TOKEN"],
     "SQL":"SELECT MP_Lecturers.ID, MP_Lecturers.Name FROM MP_Tokens JOIN MP_Lecturers ON MP_Tokens.LecturerID = MP_Lecturers.ID WHERE token = '%TOKEN%';"
