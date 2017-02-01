@@ -44,5 +44,5 @@ class Login extends API
   }
 }
 
-new Login(false);
+new Login();
  ?>

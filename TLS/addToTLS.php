@@ -35,5 +35,5 @@ class AddToTLS extends API
   }
 }
 
-new AddToTLS(false);
+new AddToTLS();
  ?>

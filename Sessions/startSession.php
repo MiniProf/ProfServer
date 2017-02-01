@@ -31,5 +31,5 @@ class StartSession extends API
       return (array('TOKEN' => $TOKEN));
   }
 }
-new StartSession(true);//needs to be true when live
+new StartSession(false);
 ?>

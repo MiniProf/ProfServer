@@ -19,5 +19,5 @@ class SubmitReview extends API
   }
 }
 
-new SubmitReview(false);
+new SubmitReview();
  ?>

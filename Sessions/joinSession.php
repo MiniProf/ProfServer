@@ -12,5 +12,5 @@ class JoinSession extends API
     return false;
   }
 }
-new JoinSession(false);//needs to be true when live
+new JoinSession();
 ?>

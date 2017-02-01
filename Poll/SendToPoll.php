@@ -18,6 +18,6 @@ class SendToPoll extends API
   }
 }
 
-new SendToPoll(false);
+new SendToPoll();
 
 ?>

@@ -17,9 +17,9 @@ class Login extends API
     $PASSHASH = strtoupper(sha1(sha1($_POST['PASSWORD'])));
     $res = $this->DB->runDBCOMMAND("createLecUser",array('NAME' => $_POST['NAME'],'UNI' => $_POST['UNI'],'PASSHASH'=>$PASSHASH));
     
-    return "Success";
+    return true;
   }
 }
 
-new Login(false);
+new Login();
  ?>
