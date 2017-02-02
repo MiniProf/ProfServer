@@ -83,5 +83,10 @@
     "name":"getUserName",
     "params":["TOKEN"],
     "SQL":"SELECT MP_Lecturers.ID, MP_Lecturers.Name FROM MP_Tokens JOIN MP_Lecturers ON MP_Tokens.LecturerID = MP_Lecturers.ID WHERE token = '%TOKEN%';"
+  },
+  {
+    "name":"endSesstion",
+    "params":["SESSIONID","LENGTH"],
+    "SQL":"UPDATE MP_Sessions SET Length='%LENGTH%' WHERE SessionID='%SESSIONID%';"
   }
 ]
