@@ -3,7 +3,7 @@ include_once '../API.php';
 class StartSession extends API
 {
   function preInit(){
-    $this->POSTVarsReq = array('NAME');
+    //$this->POSTVarsReq = array('NAME');
   }
   function generateString($length = 32){
     $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -25,8 +25,13 @@ class StartSession extends API
   }
   public function doAPI(){
     $TOKEN = $this->generateSessionID();
-
-    $res = $this->DB->runDBCOMMAND("createSession",array('ID'=>$TOKEN, 'NAME'=> $_POST['NAME'],'LECID'=>$this->USERID,'STARTTIME'=>time()));
+    if(!isset($_POST['NAME'])){
+      $Name = date("Y-m-d H:i:s");
+    }
+    else{
+      $Name = $_POST['NAME'];
+    }
+    $res = $this->DB->runDBCOMMAND("createSession",array('ID'=>$TOKEN, 'NAME'=> $Name,'LECID'=>$this->USERID,'STARTTIME'=>time()));
     if($res === FALSE)
       $GLOBALS['dieSafely'](true,"SQL Failed");
     return (array('TOKEN' => $TOKEN));
