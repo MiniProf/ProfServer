@@ -4,6 +4,6 @@ MiniProf ServerSide
 Valid Session put on PUSH Server  
 ~~Join Session~~  
 ~~Start Session~~  
-LecID to current Session ID  
-getALLSessions from LecID  
-endSession  
+~~LecID to current Session ID~~  
+~~getALLSessions from LecID~~  
+~~endSession~~  

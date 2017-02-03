@@ -36,8 +36,8 @@
   },
   {
     "name":"createSession",
-    "params":["NAME","LECID","STARTTIME"],
-    "SQL":"INSERT INTO MP_Sessions (`Name`,`LecturerID`,`StartTime`) VALUES ('%NAME%', '%LECID%', '%STARTTIME%');"
+    "params":["NAME","LECID","STARTTIME","ID"],
+    "SQL":"INSERT INTO MP_Sessions (`ID`, `Name`,`LecturerID`,`StartTime`) VALUES ('%ID%', '%NAME%', '%LECID%', '%STARTTIME%');"
   },
   {
     "name":"submitReview",
@@ -85,8 +85,13 @@
     "SQL":"SELECT MP_Lecturers.ID, MP_Lecturers.Name FROM MP_Tokens JOIN MP_Lecturers ON MP_Tokens.LecturerID = MP_Lecturers.ID WHERE token = '%TOKEN%';"
   },
   {
+    "name":"getSessionByLecturerID",
+    "params":["LECTURERID"],
+    "SQL":"SELECT * FROM MP_Sessions WHERE LecturerID='%LECTURERID%' ORDER BY StartTime DESC;"
+  },
+  {
     "name":"endSession",
     "params":["SESSIONID","LENGTH"],
-    "SQL":"UPDATE MP_Sessions SET Length='%LENGTH%' WHERE SessionID='%SESSIONID%';"
+    "SQL":"UPDATE MP_Sessions SET Length='%LENGTH%' WHERE ID='%SESSIONID%';"
   }
 ]

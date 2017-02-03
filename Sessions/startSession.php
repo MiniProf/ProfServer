@@ -27,8 +27,10 @@ class StartSession extends API
     $TOKEN = $this->generateSessionID();
 
     $res = $this->DB->runDBCOMMAND("createSession",array('ID'=>$TOKEN, 'NAME'=> $_POST['NAME'],'LECID'=>$this->USERID,'STARTTIME'=>time()));
-    if($res !== FALSE)
-      return (array('TOKEN' => $TOKEN));
+    if($res === FALSE)
+      $GLOBALS['dieSafely'](true,"SQL Failed");
+    return (array('TOKEN' => $TOKEN));
+
   }
 }
 new StartSession(false);

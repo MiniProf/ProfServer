@@ -26,9 +26,11 @@ class GetTLS extends API
       array_push($resultsJSON,array('time' => $lastTime,'TooFast' => $row["noFast"],'TooSlow' => $row["noSlow"],'NeedHelp' => $row["noNH"] ));
       $lastTime++;
     }
-    while($lastTime<=$length){
-      array_push($resultsJSON,array('time' => $lastTime,'TooFast' => 0,'TooSlow' => 0,'NeedHelp' => 0 ));
-      $lastTime++;
+    if($length!=0){
+      while($lastTime<=$length){
+        array_push($resultsJSON,array('time' => $lastTime,'TooFast' => 0,'TooSlow' => 0,'NeedHelp' => 0 ));
+        $lastTime++;
+      }
     }
 	/*
 

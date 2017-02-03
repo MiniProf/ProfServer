@@ -11,12 +11,13 @@ class EndSession extends API
       $GLOBALS['dieSafely'](true,"Session not valid");
     }
     $Session = mysqli_fetch_assoc($SessionRes);
-    $length = (time() - $Session['StartTime'])/60;
-    $res = $this->DB->runDBCOMMAND("endSession",array('SESSIONID'=>$_POST['SESSIONID'], 'LENGTH'=> $length));
-    if($res !== FALSE )
-      return (true);
-    echo $res;
-    return false;
+    if($Session['Length'] === 0){
+      $length = (time() - $Session['StartTime'])/60;
+      $res = $this->DB->runDBCOMMAND("endSession",array('SESSIONID'=>$Session['ID'], 'LENGTH'=> $length));
+      if($res !== FALSE )
+        return (true);
+    }
+    $GLOBALS['dieSafely'](true,"Session Has Been Ended");
   }
 }
 new EndSession(false);
