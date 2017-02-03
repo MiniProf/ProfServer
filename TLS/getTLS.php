@@ -52,5 +52,5 @@ class GetTLS extends API
   }
 }
 
-new GetTLS(false);
+new GetTLS(true);
  ?>

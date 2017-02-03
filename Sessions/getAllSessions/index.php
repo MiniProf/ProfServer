@@ -15,5 +15,5 @@ class GetALLSessions extends API
     return($Sessions);
   }
 }
-new GetALLSessions(false);
+new GetALLSessions(true);
 ?>

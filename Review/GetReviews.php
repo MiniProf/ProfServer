@@ -22,5 +22,5 @@ class GetReviews extends API
   }
 }
 
-new GetReviews(false);
+new GetReviews(true);
  ?>

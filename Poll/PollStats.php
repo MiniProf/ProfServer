@@ -14,6 +14,6 @@ class PollStats extends API
   }
 }
 
-new PollStats(false);//needs to be true when live
+new PollStats(true);//needs to be true when live
 
 ?>

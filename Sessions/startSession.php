@@ -33,5 +33,5 @@ class StartSession extends API
 
   }
 }
-new StartSession(false);
+new StartSession(true);
 ?>

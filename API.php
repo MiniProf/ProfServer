@@ -21,13 +21,13 @@ abstract class API
   protected $TOKEN = "";
   protected $GETVarsReq = array();
   protected $POSTVarsReq = array();
-  public function __construct($allowAnon = true)
+  public function __construct($reqToken = false)
   {
-    if(!$allowAnon && !isset($_GET['TOKEN'])){
+    if($reqToken && !isset($_GET['TOKEN'])){
       $GLOBALS['dieSafely'](true,"No Token");
     }
     $this->preCheck();
-    if(!$allowAnon){
+    if($reqToken){
         $this->TOKEN = $_GET['TOKEN'];
         $var = mysqli_fetch_assoc($this->DB->runDBCOMMAND("getUserName",array("TOKEN"=>$this->TOKEN)));
         $this->USER = $var["Name"];

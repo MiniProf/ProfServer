@@ -20,5 +20,5 @@ class EndSession extends API
     $GLOBALS['dieSafely'](true,"Session Has Been Ended");
   }
 }
-new EndSession(false);
+new EndSession(true);
 ?>
