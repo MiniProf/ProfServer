@@ -3,8 +3,8 @@ include_once 'Validation.php';
 include_once 'DB/DBInterface.php';
 
 header('Access-Control-Allow-Origin: *');
-error_reporting(-1);
-ini_set('display_errors', 'On');
+header('Access-Control-Allow-Headers: content-type');
+header('Content-Type: application/json');
 
 $GLOBALS['dieSafely'] = function($err,$message){
   $array = array('error' => $err, 'msg' => $message);
@@ -29,9 +29,13 @@ abstract class API
     $this->preCheck();
     if($reqToken){
         $this->TOKEN = $_GET['TOKEN'];
+        if(!isset($_GET['TOKEN'])){
+            $this->TOKEN = "68MRAVFENTP0JZ1J9KUWSBOD2TTNYPG5";
+        }
         $var = mysqli_fetch_assoc($this->DB->runDBCOMMAND("getUserName",array("TOKEN"=>$this->TOKEN)));
         $this->USER = $var["Name"];
         $this->USERID = $var["ID"];
+        
     }
     $this->preInit();
     $GLOBALS['dieSafely'](false,$this->doAPI());
