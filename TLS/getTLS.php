@@ -11,7 +11,7 @@ class GetTLS extends API
   function doAPI(){
     $res1 = $this->DB->runDBCOMMAND("getSession",array('SESSIONID' => $_GET['SESSIONID']));
     $length = mysqli_fetch_assoc($res1)["Length"];
-    var_dump($length);
+    //var_dump($length);
 
     $res = $this->DB->runDBCOMMAND("getTLS",array('SESSIONID' => $_GET['SESSIONID']));
 
