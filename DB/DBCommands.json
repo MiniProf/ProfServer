@@ -1,5 +1,10 @@
 [
   {
+    "name":"createPoll",
+    "params":["SESSIONID","ID"],
+    "SQL":"INSERT INTO MP_Sessions (`SessionID`) VALUES ('%SESSIONID%');"
+  },
+  {
     "name":"addToPoll",
     "params":["POLLID","VOTE"],
     "SQL":"UPDATE MP_Questions SET %VOTE%count = %VOTE%count + 1  WHERE ID = '%POLLID%';"

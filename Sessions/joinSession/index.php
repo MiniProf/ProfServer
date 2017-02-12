@@ -1,5 +1,5 @@
 <?php
-include_once '../API.php';
+include_once '../../API.php';
 class JoinSession extends API
 {
   function preInit(){

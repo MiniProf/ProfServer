@@ -1,5 +1,5 @@
 <?php
-include_once '../API.php';
+include_once '../../API.php';
 class StartSession extends API
 {
   function preInit(){
@@ -34,7 +34,7 @@ class StartSession extends API
     $res = $this->DB->runDBCOMMAND("createSession",array('ID'=>$TOKEN, 'NAME'=> $Name,'LECID'=>$this->USERID,'STARTTIME'=>time()));
     if($res === FALSE)
       $GLOBALS['dieSafely'](true,"SQL Failed");
-    return (array('TOKEN' => $TOKEN));
+    return (array('SESSIONID' => $TOKEN));
 
   }
 }

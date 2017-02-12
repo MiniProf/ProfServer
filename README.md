@@ -16,6 +16,15 @@ Off Campus:
 
 ## Authentication
 
+###### GET `/Auth/LecID/`
+Gets the LecturerID
+
+###### Parameters
+
+| Key      | Required | Description |
+|----------|----------|-------------|
+|          |          |             |
+
 ###### POST `/Auth/Login/`
 Used for loging in as a lecturer and getting a token
 
@@ -56,7 +65,13 @@ Submit a response for a Poll
 | ID       | Yes      | ID of a Poll                          |
 | VOTE     | Yes      | Vote can ONLY be "A", "B", "C" or "D" |
 
-# Create Poll API IS MISSING
+###### POST `/Poll/Create/`
+Create a Poll
+###### Parameters
+
+| Key      | Required | Description                           |
+|----------|----------|---------------------------------------|
+| SESSIONID| Yes      | ID of a Session                       |
 
 ## Review
 
@@ -112,9 +127,9 @@ Increments participants on a Session
 Starts a Session returns the SessionID
 ###### Parameters
 
-| Key       | Required | Description         |
-|-----------|----------|---------------------|
-| NAME      | No       | Name Of the Session |
+| Key       | Required | Description                                             |
+|-----------|----------|---------------------------------------------------------|
+| NAME      | No       | Name Of the Session (Defaults to current Date and Time) |
 
 ## TLS (Speed Monitor or Traffic Light System)
 ###### GET `/TLS/`
