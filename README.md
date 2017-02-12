@@ -12,7 +12,13 @@ On Campus:
 `http://sccug-mini-prof.lancs.ac.uk/ProfServer/ `  
 
 Off Campus:   
-`http://wilsonator.co.uk/MiniProf/ `   
+`http://wilsonator.co.uk/MiniProf/ `
+
+## Returns  
+This API will return a Obj like the following if no errors:  
+`{err:false,msg:{}}`  
+or if errors:  
+`{err:true,msg:""}`  
 
 ## Authentication
 
@@ -23,7 +29,7 @@ Gets the LecturerID
 
 | Key      | Required | Description |
 |----------|----------|-------------|
-|          |          |             |
+|          |          |             | |
 
 ###### POST `/Auth/Login/`
 Used for loging in as a lecturer and getting a token

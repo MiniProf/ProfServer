@@ -29,13 +29,14 @@ abstract class API
     $this->preCheck();
     if($reqToken){
         $this->TOKEN = $_GET['TOKEN'];
+        //temp override
         if(!isset($_GET['TOKEN'])){
             $this->TOKEN = "68MRAVFENTP0JZ1J9KUWSBOD2TTNYPG5";
         }
         $var = mysqli_fetch_assoc($this->DB->runDBCOMMAND("getUserName",array("TOKEN"=>$this->TOKEN)));
         $this->USER = $var["Name"];
         $this->USERID = $var["ID"];
-        
+
     }
     $this->preInit();
     $GLOBALS['dieSafely'](false,$this->doAPI());

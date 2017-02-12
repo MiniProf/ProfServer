@@ -7,9 +7,7 @@ class JoinSession extends API
   }
   public function doAPI(){
     $res = $this->DB->runDBCOMMAND("incrParticipants",array('SESSIONID'=>$_POST['SESSIONID']));
-    if($res !== FALSE  && mysqli_num_rows($res) == 0)
-      return (true);
-    return false;
+    return $res;
   }
 }
 new JoinSession();
