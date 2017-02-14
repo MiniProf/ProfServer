@@ -11,7 +11,7 @@ class EndSession extends API
       $GLOBALS['dieSafely'](true,"Session not valid");
     }
     $Session = mysqli_fetch_assoc($SessionRes);
-    if($Session['Length'] === 0){
+    if($Session['Length'] == 0){
       $length = (time() - $Session['StartTime'])/60;
       $res = $this->DB->runDBCOMMAND("endSession",array('SESSIONID'=>$Session['ID'], 'LENGTH'=> $length));
       if($res !== FALSE )
