@@ -6,8 +6,12 @@ class JoinSession extends API
     $this->POSTVarsReq = array('SESSIONID');
   }
   public function doAPI(){
+    $res = $this->DB->runDBCOMMAND("getSession",array('SESSIONID'=>$_POST['SESSIONID']));
+    if(mysqli_num_rows($res)!=1){
+      $GLOBALS['dieSafely'](true,"Invalid Session");
+    }
     $res = $this->DB->runDBCOMMAND("incrParticipants",array('SESSIONID'=>$_POST['SESSIONID']));
-    return $res;
+    return true;
   }
 }
 new JoinSession();

@@ -12,18 +12,27 @@ class AddToTLS extends API
   function doAPI(){
     //check OPTION
     if($_POST["OPTION"] != "Slow" && $_POST["OPTION"] != "Fast" && $_POST["OPTION"] != "NH"){
-      $GLOBALS['dieSafely'](true,"Invalid OPTION");
+      $GLOBALS['dieSafely'](true,"Invalid Option");
     }
-    $res1 = $this->DB->runDBCOMMAND("getPreciseTLS",array('SESSIONID' => $_POST['SESSIONID'],'MINUTE'=>$_POST['MINUTE']));
+    // TODO:Figure OUT MINUTE
+    $res = $this->DB->runDBCOMMAND("getSession",array('SESSIONID'=>$_POST['SESSIONID']));
+    if(mysqli_num_rows($res)!=1){
+      $GLOBALS['dieSafely'](true,"Invalid Session");
+    }
+    $result = mysqli_fetch_assoc($res);
+    $MINUTE = intval( round( ( time() - $result['StartTime'] ) / 60 ) );
+    //$now =
+    var_dump($len);
+    $res1 = $this->DB->runDBCOMMAND("getPreciseTLS",array('SESSIONID' => $_POST['SESSIONID'],'MINUTE'=>$MINUTE));
     if($res1 == false){
-
+      $GLOBALS['dieSafely'](true,"Dunno");
     }
     if($res1->num_rows == 1){
       //UPDATE
-      $res = $this->DB->runDBCOMMAND("submitTLS",array('SESSIONID' => $_POST['SESSIONID'],'MINUTE'=>$_POST['MINUTE'],'OPINION'=>$_POST["OPTION"]));
+      $res = $this->DB->runDBCOMMAND("submitTLS",array('SESSIONID' => $_POST['SESSIONID'],'MINUTE'=>$MINUTE,'OPINION'=>$_POST["OPTION"]));
     }
     else {
-      $res = $this->DB->runDBCOMMAND("createTLS",array('SESSIONID' => $_POST['SESSIONID'],'MINUTE'=>$_POST['MINUTE'],'OPINION'=>$_POST["OPTION"]));
+      $res = $this->DB->runDBCOMMAND("createTLS",array('SESSIONID' => $_POST['SESSIONID'],'MINUTE'=>$MINUTE,'OPINION'=>$_POST["OPTION"]));
     }
 
     if($res == false){

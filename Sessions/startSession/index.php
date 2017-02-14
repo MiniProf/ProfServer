@@ -24,7 +24,7 @@ class StartSession extends API
     return $TOKEN;
   }
   public function doAPI(){
-    $TOKEN = $this->generateSessionID();
+    $TOKEN = $this->generateSessionID(6);
     if(!isset($_POST['NAME'])){
       $Name = date("Y-m-d H:i:s");
     }
