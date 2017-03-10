@@ -4,6 +4,9 @@ class StartSession extends API
 {
   function preInit(){
     //$this->POSTVarsReq = array('NAME');
+    if($_SERVER['REQUEST_METHOD'] == "OPTIONS"){
+        die();
+    }
   }
   function generateString($length = 32){
     $characters = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -16,7 +19,7 @@ class StartSession extends API
   }
   function generateSessionID(){
     while(true){
-      $TOKEN = $this->generateString();
+      $TOKEN = $this->generateString(6);
       $res = $this->DB->runDBCOMMAND("getSession",array('SESSIONID' => $TOKEN));
       if(mysqli_num_rows($res) == 0)
         break;
