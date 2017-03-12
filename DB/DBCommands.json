@@ -1,8 +1,8 @@
 [
   {
     "name":"createPoll",
-    "params":["SESSIONID","ID"],
-    "SQL":"INSERT INTO MP_Sessions (`SessionID`) VALUES ('%SESSIONID%');"
+    "params":["SESSIONID"],
+    "SQL":"INSERT INTO MP_Questions (`SessionID`) VALUES ('%SESSIONID%');"
   },
   {
     "name":"addToPoll",

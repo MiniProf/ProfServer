@@ -8,10 +8,10 @@ class StartPoll extends API
   public function doAPI(){
     $res = $this->DB->runDBCOMMAND("createPoll",array('SESSIONID'=> $_POST['SESSIONID']));
     if($res === FALSE)
-      $GLOBALS['dieSafely'](true,"SQL Failed");
-    return (array('POLLID' => $TOKEN));
+      $GLOBALS['dieSafely'](true,$this->DB->getError());
+    return (array('POLLID' => $this->DB->getInsertID()));
 
   }
 }
-new StartSession(true);
+new StartPoll(true);
 ?>
