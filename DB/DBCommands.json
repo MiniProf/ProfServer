@@ -7,7 +7,7 @@
   {
     "name":"addToPoll",
     "params":["SESSIONID","VOTE"],
-    "SQL":"UPDATE MP_Questions SET %VOTE%count = %VOTE%count + 1  WHERE SessionID = '%SESSIONID%' ORDER BY ID DESC;"
+    "SQL":"UPDATE MP_Questions SET %VOTE%count = %VOTE%count + 1  WHERE SessionID = '%SESSIONID%' ORDER BY ID DESC LIMIT 1;"
   },
   {
     "name":"getPollData",
