@@ -23,7 +23,7 @@ class GetTLS extends API
         array_push($resultsJSON,array('time' => $lastTime,'TooFast' => 0,'TooSlow' => 0,'NeedHelp' => 0 ));
         $lastTime++;
       }
-      array_push($resultsJSON,array('time' => $lastTime,'TooFast' => $row["noFast"],'TooSlow' => $row["noSlow"],'NeedHelp' => $row["noNH"] ));
+      array_push($resultsJSON,array('time' => $lastTime,'TooFast' => (int) $row["noFast"],'TooSlow' => (int) $row["noSlow"],'NeedHelp' => (int) $row["noNH"] ));
       $lastTime++;
     }
     if($length!=0){
