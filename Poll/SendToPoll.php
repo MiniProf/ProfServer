@@ -11,7 +11,7 @@ class SendToPoll extends API
     if($VOTE!="A" && $VOTE!="B" && $VOTE!="C" && $VOTE != "D")
       $GLOBALS['dieSafely'](true,"Invalid Vote");
 
-    $res = $this->DB->runDBCOMMAND("addToPoll",array('POLLID'=> $_GET['SESSIONID'] ,'VOTE' => $VOTE));
+    $res = $this->DB->runDBCOMMAND("addToPoll",array('SESSIONID'=> $_GET['SESSIONID'] ,'VOTE' => $VOTE));
     if($res !== FALSE)
       return "Submitted";
     $GLOBALS['dieSafely'](true,"SQL Fail");
