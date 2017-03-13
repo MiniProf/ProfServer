@@ -39,5 +39,10 @@ class DBInterface
     }
     return false;
   }
+  public function getError(){
+    return mysqli_error($this->DBConnection);
+}public function getInsertID(){
+	return mysqli_insert_id($this->DBConnection);
+}
 }
  ?>
