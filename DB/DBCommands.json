@@ -1,8 +1,8 @@
 [
   {
     "name":"createPoll",
-    "params":["SESSIONID","ID"],
-    "SQL":"INSERT INTO MP_Sessions (`SessionID`) VALUES ('%SESSIONID%');"
+    "params":["SESSIONID"],
+    "SQL":"INSERT INTO MP_Questions (`SessionID`) VALUES ('%SESSIONID%');"
   },
   {
     "name":"addToPoll",
@@ -11,8 +11,8 @@
   },
   {
     "name":"getPollData",
-    "params":["POLLID"],
-    "SQL":"SELECT `ID`, `Acount`, `Bcount`, `Ccount`, `Dcount` FROM MP_Questions WHERE ID = \"%POLLID%\";"
+    "params":["SESSIONID"],
+    "SQL":"SELECT * FROM MP_Questions WHERE SessionID = \"%SESSIONID%\" ORDER BY ID DESC;"
   },
   {
     "name":"LECIDFromToken",
