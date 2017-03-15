@@ -18,18 +18,18 @@ class DBInterface
   public function runDBCOMMAND($COMMAND, $ArrayOfParams = Array()){
     //format of ArrayOfParams unkknown
     //var_dump($this->COMMANDS);
-    if($Command = $this->getCommand($COMMAND,$ArrayOfParams))
+    if($Command = $this->getDBCOMMAND($COMMAND,$ArrayOfParams))
       return$this->DBConnection->query($Command);
 
     die("Unknown DB COMMAND");
     }
-  public function getCommand($COMMAND,$ArrayOfParams){
+  public function getDBCOMMAND($COMMAND,$ArrayOfParams){
     foreach ($this->COMMANDS as $value) {
       if($value["name"] == $COMMAND){
         $sql = $value["SQL"];
         foreach ($value["params"] as $param) {
           if(strpos($ArrayOfParams[$param],";")!== false){
-            return false;
+          $GLOBALS['dieSafely'](true,'cash me outside how about daht');
           }
           $sql = str_replace("%" . $param . "%",$ArrayOfParams[$param],$sql);
         }
